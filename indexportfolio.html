@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hriday Biswakarma | MIS Executive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000, #1a0d2e, #000);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
+            animation: floatParticles 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes floatParticles {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(-20px, -20px) scale(1.1); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* Fix scroll offset for fixed nav */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        nav li a:hover {
+            color: #9333ea;
+            transform: translateY(-2px);
+        }
+
+        nav li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #9333ea, #a855f7);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #9333ea, #a855f7, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #a855f7;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #9333ea, #a855f7);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.3)); }
+            100% { filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.6)); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #9333ea, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Bio Section */
+        .bio {
+            text-align: center;
+            background: rgba(147, 51, 234, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .bio-placeholder {
+            color: #888;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Education & Experience Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(147, 51, 234, 0.1);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #9333ea, #a855f7);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(147, 51, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            color: #a855f7;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(147, 51, 234, 0.6);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #a855f7;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            background: rgba(147, 51, 234, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+        }
+
+        .contact-item {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: #a855f7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #9333ea;
+            transform: scale(1.05);
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Hriday Biswakarma</h1>
+            <div class="subtitle">MIS Executive</div>
+            <div class="description">
+                Transforming data into actionable insights | Streamlining business operations through innovative management information systems
+            </div>
+            <a href="#about" class="cta-button">Explore My Journey</a>
+        </div>
+    </section>
+
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div class="bio">
+            <div class="bio-placeholder">
+                Your personal story and professional journey will shine here. This space is ready for you to share your passion, vision, and what drives you as an MIS professional. Let your personality and expertise come through in your own words.
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="fade-in">
+        <h2 class="section-title">Education</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+                <div class="date">2021 - Present</div>
+                <p>Currently pursuing comprehensive studies in computer applications, software development, and information systems management. Developing strong foundation in programming, database management, and system analysis.</p>
+            </div>
+            <div class="card">
+                <h3>Computer Applications Diploma</h3>
+                <div class="date">Udemy Certification</div>
+                <p>Completed intensive certification program focusing on practical computer applications, enhancing technical skills in various software platforms and digital tools essential for modern business environments.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="fade-in">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3>MIS Executive</h3>
+                <div class="date">Summit Hotels and Resorts | Oct 2023 - Present</div>
+                <p>Managing comprehensive information systems, generating analytical reports, streamlining data processes, and supporting strategic decision-making through advanced data analysis and system optimization. Implementing efficient workflows and maintaining database integrity across multiple hotel operations.</p>
+            </div>
+            <div class="card">
+                <h3>Computer & Science Teacher</h3>
+                <div class="date">SCG English Academy, Mathabhanga | Apr 2023 - Sep 2023</div>
+                <p>Delivered engaging computer and science education to students from Classes 4-7, developing curriculum content, fostering technological literacy, and inspiring young minds to explore STEM fields. Created interactive learning experiences and assessed student progress effectively.</p>
+            </div>
+            <div class="card">
+                <h3>Customer Service Executive</h3>
+                <div class="date">Conneqt Solutions Pvt Ltd | Aug 2022 - Sep 2022</div>
+                <p>Provided exceptional customer support, resolved complex queries, maintained high satisfaction ratings, and developed strong communication skills. Handled multi-channel customer interactions while ensuring service quality and company standards were consistently met.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="fade-in">
+        <h2 class="section-title">Technical Excellence</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">📊</div>
+                <h3>Data Analytics</h3>
+                <p>Advanced reporting & insights</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">💾</div>
+                <h3>Database Management</h3>
+                <p>SQL, data optimization</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">⚙️</div>
+                <h3>System Integration</h3>
+                <p>Process automation</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📈</div>
+                <h3>Business Intelligence</h3>
+                <p>Strategic analysis tools</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🔐</div>
+                <h3>Information Security</h3>
+                <p>Data protection protocols</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📋</div>
+                <h3>Project Management</h3>
+                <p>Agile methodologies</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                📧 <a href="mailto:hridaybiswakarmagrg119@gmail.com">hridaybiswakarmagrg119@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                📱 <a href="tel:+918637581496">+91 8637581496</a>
+            </div>
+            <div class="contact-item">
+                🌍 Open to opportunities and collaborations
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Also handle the CTA button
+        document.querySelector('.cta-button').addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#about');
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+
+        // Smooth scrolling animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Enhanced scroll event with throttling for 120fps-like smoothness
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(animateOnScroll);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            requestTick();
+            ticking = false;
+        });
+
+        // Initial load animation
+        window.addEventListener('load', () => {
+            animateOnScroll();
+        });
+
+        // Smooth navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
